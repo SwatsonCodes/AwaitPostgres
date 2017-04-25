@@ -1,6 +1,6 @@
 FROM golang:1
 
-ARG PACKAGE=github.com/swatsoncodes/AwaitPostgres
+ARG PACKAGE=github.com/swatsoncodes/AwaitPostgres/
 
 ADD main.go /go/src/${PACKAGE}
 WORKDIR /go/src/${PACKAGE}
