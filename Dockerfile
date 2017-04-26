@@ -2,7 +2,7 @@ FROM golang:1
 
 ARG PACKAGE=github.com/swatsoncodes/AwaitPostgres/
 
-ADD main.go /go/src/${PACKAGE}
+ADD . /go/src/${PACKAGE}
 WORKDIR /go/src/${PACKAGE}
 
 RUN set -eux &&\

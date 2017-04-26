@@ -1,0 +1,26 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: toy
+spec:
+  template:
+    metadata:
+      labels:
+        app: toy
+    spec:
+      initContainers:
+      - name: wait-for-postgres
+        image: bowerswilkins/awaitpostgres
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: "POSTGRES_URL"
+          value: "postgresql://postgres:@postgres:5432/postgres?sslmode=disable"
+      restartPolicy: OnFailure
+      containers:
+      - name: toy
+        image: bowerswilkins/toypostgres
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: "POSTGRES_URL"
+          value: "postgres://postgres:@postgres:5432/postgres?sslmode=disable"
