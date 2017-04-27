@@ -47,3 +47,24 @@ was inserted (how to do this is left as an exercise for the reader).
 If you want to see what the behavior looks like without AwaitPostgres, do the above steps but use `toy_job_without_await.yml`
 instead. The job will eventually run, but it will take a lot longer and probably enter a few crash loop backoffs.
 
+#### Spin up with tmux
+
+Prerequisites (macOS):
+
+```bash
+brew install watch tmux
+```
+
+Watch spin up:
+
+```bash
+./tmux.sh
+kubectl create -f kubernetes/toy_job_with_await.yml
+kubectl create -f kubernetes/postgres/
+```
+
+Tear down tmux session:
+
+```bash
+tmux kill-session -t awaitpostres
+```
